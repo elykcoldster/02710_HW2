@@ -8,6 +8,9 @@ def s(x1, x2):
 	s = np.sqrt(((n1-1)*s1**2+(n2-1)*s2**2)/(n1+n2-2))
 	return s
 
+# T-statistic function
+# X - matrix of genes (rows) and samples (cols)
+# Y - labels of samples
 def TStat(X, Y, s0):
 	X1 = X[:,Y == 1]
 	X2 = X[:,Y == 2]
@@ -18,10 +21,12 @@ def TStat(X, Y, s0):
 	t = (Xbar1-Xbar2)/(s0 + s(X1,X2)*np.sqrt(1/n1+1/n2))
 	return t
 
+# Loads data from disk
 def load_data(filename='simData.tsv'):
     X = np.loadtxt(filename)
     return (X)
 
+# Computes the AUC
 def AUC(T, NP):
 	Np = sum(NP == 1)
 	Nn = sum(NP == 0)
